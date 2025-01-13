@@ -1,0 +1,161 @@
+<app-alert [alertType]="'Success'" [message]="'Hi From client Page'"></app-alert>
+<div class="row">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-header bg-success">
+        Client List - {{currentDate | date:'dd-MM-yyyy'}}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <table class="table table-bordered table-striped mt-5">
+              <thead>
+                <tr>
+                  <th>Sr No</th>
+                  <th>Company Name</th>
+                  <th>Person Name</th>
+                  <th>Contact No</th>
+                  <th>City</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of clientList; track $index) {
+                  <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ item.companyName | uppercase }}</td>
+                    <td>{{ item.contactPersonName }}</td>
+                    <td>{{ item.contactNo }}</td>
+                    <td>{{ item.city }}</td>
+                    <td>
+                      <button class="btn btn-primary" (click)="onEdit(item)">Edit</button>
+                      <button class="btn btn-danger" (click)="onDelete(item.clientId)">Delete</button>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-4 ">
+    <div class="card">
+      <div class="card-header bg-success">
+        New Client
+      </div>
+      <div class="card-body">
+        <form #form="ngForm">
+          <div class="row">
+            <div class="col-6">
+              <label for="">Person Name</label>
+              <input type="text" #personName="ngModel" name="contactPersonName" minlength="5" required [(ngModel)]="clientObj.contactPersonName" class="form-control">
+              @if (personName.touched) {
+                <div class="text-danger">
+                  @if (personName?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                  @if (personName?.errors?.['minlength']) {
+                    <span>Min % chars Required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Company Name</label>
+              <input type="text" #companyName="ngModel" name="companyName" minlength="5" required [(ngModel)]="clientObj.companyName" class="form-control">
+              @if (companyName.touched) {
+                <div class="text-danger">
+                  @if (companyName?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+
+                  @if (companyName?.errors?.['minlength']) {
+                    <span>Min % chars Required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Contact No</label>
+              <input type="text" #contactNo="ngModel" name="contactNo" minlength="5" required [(ngModel)]="clientObj.contactNo" class="form-control">
+              @if (contactNo.touched) {
+                <div class="text-danger">
+                  @if (contactNo?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+
+                  @if (contactNo?.errors?.['minlength']) {
+                    <span>Min % chars Required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">City</label>
+              <input type="text" #city="ngModel" name="city" required [(ngModel)]="clientObj.city" class="form-control">
+              @if (city.touched) {
+                <div class="text-danger">
+                  @if (city?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label f or="">State</label>
+              <input type="text" #state="ngModel" name="state" required [(ngModel)]="clientObj.state" class="form-control">
+              @if (state.touched) {
+                <div class="text-danger">
+                  @if (state?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Pincode</label>
+              <input type="text" #pincode="ngModel" name="pincode" required [(ngModel)]="clientObj.pincode" class="form-control">
+              @if (pincode.touched) {
+                <div class="text-danger">
+                  @if (pincode?.errors?.['required']) {
+                    <span>This is required</span>
+                  }
+                </div>
+              }
+            </div>
+            <div class="col-6">
+              <label for="">Address</label>
+              <textarea name="" #address="ngModel" minlength="5" name="address" required id="" [(ngModel)]="clientObj.address" class="form-control"></textarea>
+            </div>
+            <div class="col-6">
+              <label for="">Employee Strenght</label>
+              <input type="text" [(ngModel)]="clientObj.employeeStrenght" name="employeeStrenght"  class="form-control">
+            </div>
+            <div class="col-6">
+              <label for="">GstNo</label>
+              <input type="text" [(ngModel)]="clientObj.gstNo" name="gstNo" class="form-control">
+            </div>
+            <div class="col-6">
+              <label for="">RegNo</label>
+              <input type="text" [(ngModel)]="clientObj.regNo" name="regNo" class="form-control">
+            </div>
+          </div>
+          <div class="row pt-2">
+            <div class="col-6 text-center">
+              <button class="btn btn-secondary">Reset</button>
+            </div>
+            <div class="col-6 text-center">
+                <app-my-button (onBtnClicked)="onSaveClient($event)" [btnText]="clientObj.clientId != 0 ? 'Update client' : 'Save client'    " [btnClass]="'btn btn-success'"></app-my-button>
+              <!-- <button class="btn btn-success" [disabled]="form.invalid" (click)="onSaveClient()">
+                {{ clientObj.clientId != 0 ? 'Update client' : 'Save client' }}
+              </button> -->
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

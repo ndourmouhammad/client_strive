@@ -15,18 +15,23 @@ Client Strive est une application Angular conçue pour gérer différents module
 1. Clonez ce dépôt :
    ```bash
    git clone https://github.com/votre-utilisateur/client-strive.git
+   ```
 
-2. Installez les dépendances
-  ```bash
+2. Installez les dépendances :
+   ```bash
    npm install
+   ```
 
-2. Lancez l'application 
-  ```bash
+3. Lancez l'application :
+   ```bash
    ng serve
+   ```
+   L'application sera disponible sur `http://localhost:4200`.
 
 ## Technologies utilisées
 
-- **Framework :** Angular 18.
-- **Styling :** CSS/Bootstrap.
-- **Gestion des routes :** Angualar Router.
-- **Services :** Services Angular pour la gestion des données.
+- **Framework :** Angular 18
+- **Styling :** CSS/Bootstrap
+- **Gestion des routes :** Angular Router
+- **Services :** Services Angular pour la gestion des données
+
